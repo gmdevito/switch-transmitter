@@ -1,5 +1,13 @@
 input.onPinPressed(TouchPin.P0, function () {
-    radio.sendString("closed")
+    if (input.pinIsPressed(TouchPin.P0)) {
+        radio.sendString("closed")
+        basic.showIcon(IconNames.No)
+    } else {
+        radio.sendString("open")
+        basic.showIcon(IconNames.Square)
+    }
+    basic.pause(1000)
+    basic.clearScreen()
 })
 input.onButtonPressed(Button.AB, function () {
     basic.showIcon(IconNames.Heart)
