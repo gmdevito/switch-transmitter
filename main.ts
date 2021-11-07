@@ -1,24 +1,11 @@
 input.onPinPressed(TouchPin.P0, function () {
-    control.raiseEvent(
-    EventBusSource.MICROBIT_ID_IO_P0,
-    EventBusValue.MICROBIT_PIN_EVT_PULSE_HI
-    )
-})
-input.onPinReleased(TouchPin.P0, function () {
-    control.raiseEvent(
-    EventBusSource.MICROBIT_ID_IO_P0,
-    EventBusValue.MICROBIT_PIN_EVT_PULSE_LO
-    )
-})
-control.onEvent(EventBusSource.MICROBIT_ID_IO_P0, EventBusValue.MICROBIT_EVT_ANY, function () {
-    if (true) {
-        basic.clearScreen()
-        radio.sendString("closed")
+    pin0state = !(pin0state)
+    if (pin0state) {
         basic.showIcon(IconNames.No)
+        radio.sendString("closed")
     } else {
-        basic.clearScreen()
-        radio.sendString("open")
         basic.showIcon(IconNames.Square)
+        radio.sendString("open")
     }
 })
 input.onButtonPressed(Button.AB, function () {
@@ -26,4 +13,5 @@ input.onButtonPressed(Button.AB, function () {
     basic.pause(2000)
     basic.clearScreen()
 })
+let pin0state = false
 radio.setGroup(1)
