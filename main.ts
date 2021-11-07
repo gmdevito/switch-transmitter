@@ -1,16 +1,15 @@
 input.onPinPressed(TouchPin.P0, function () {
-    if (input.pinIsPressed(TouchPin.P0)) {
-        radio.sendString("closed")
-        basic.showIcon(IconNames.No)
-    } else {
-        radio.sendString("open")
-        basic.showIcon(IconNames.Square)
-    }
-    basic.pause(1000)
     basic.clearScreen()
+    radio.sendString("closed")
+    basic.showIcon(IconNames.No)
+})
+input.onPinReleased(TouchPin.P0, function () {
+    basic.clearScreen()
+    radio.sendString("open")
+    basic.showIcon(IconNames.Square)
 })
 input.onButtonPressed(Button.AB, function () {
-    basic.showIcon(IconNames.Heart)
+    basic.showIcon(IconNames.Chessboard)
     basic.pause(2000)
     basic.clearScreen()
 })
